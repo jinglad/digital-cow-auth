@@ -17,4 +17,4 @@ const OrderSchema = new Schema<IOrder, OrderModel>(
   { timestamps: true, toJSON: { virtuals: true } },
 );
 
-export const User = model<IOrder, OrderModel>('Order', OrderSchema);
+export const Order = model<IOrder, OrderModel>('Order', OrderSchema);

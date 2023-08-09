@@ -40,9 +40,9 @@ async function bootstrap() {
 
 bootstrap();
 
-process.on('SIGTERM', () => {
-  console.log('SIGTERM is received');
-  if (server) {
-    server.close();
-  }
-});
+// process.on('SIGTERM', () => {
+//   console.log('SIGTERM is received');
+//   if (server) {
+//     server.close();
+//   }
+// });

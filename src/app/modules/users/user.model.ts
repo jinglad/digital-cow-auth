@@ -24,6 +24,7 @@ const UserSchema = new Schema<Iuser, UserModel>(
     phoneNumber: {
       type: String,
       required: true,
+      unique: true,
     },
     address: {
       type: String,
