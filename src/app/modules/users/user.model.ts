@@ -1,15 +1,18 @@
 import { Schema, model } from 'mongoose';
 import { Iuser, UserModel } from './user.interface';
+import bcrypt from 'bcrypt';
+import config from '../../../config';
 
 const UserSchema = new Schema<Iuser, UserModel>(
   {
     password: {
       type: String,
       required: true,
+      select: false,
     },
     role: {
       type: String,
-      enum: ['seller', 'buyer'],
+      enum: ['seller', 'buyer', 'admin'],
       default: 'seller',
     },
     name: {
@@ -40,5 +43,27 @@ const UserSchema = new Schema<Iuser, UserModel>(
   },
   { timestamps: true, toJSON: { virtuals: true } },
 );
+
+UserSchema.statics.isUserExist = async function (
+  id: string,
+): Promise<Iuser | null> {
+  return await User.findOne({ id }, { _id: 1, password: 1, role: 1 });
+};
+
+UserSchema.statics.isPasswordMatched = async function (
+  givenPassword: string,
+  savedPassword: string,
+): Promise<boolean> {
+  return await bcrypt.compare(givenPassword, savedPassword);
+};
+
+UserSchema.pre('save', async function (next) {
+  // hashing user password
+  this.password = await bcrypt.hash(
+    this.password,
+    Number(config.bycrypt_salt_rounds),
+  );
+  next();
+});
 
 export const User = model<Iuser, UserModel>('User', UserSchema);

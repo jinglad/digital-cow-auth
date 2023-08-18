@@ -2,19 +2,16 @@
 import { Model } from 'mongoose';
 import { IName } from '../../../interfaces/common';
 
-export interface Iuser {
+export type IAdmin = {
   _id: string;
-  password: string;
-  role: string;
-  name: IName;
   phoneNumber: string;
+  role: string;
+  password: string;
+  name: IName;
   address: string;
-  budget: number;
-  income: number;
-}
+};
 
-// export type UserModel = Model<Iuser>;
-export type UserModel = {
-  isUserExist(phoneNumber: string): Promise<Iuser>;
+export type AdminModel = {
+  isAdminExist(phoneNumber: string): Promise<IAdmin>;
   isPasswordMatch(password: string, hashPassword: string): Promise<boolean>;
-} & Model<Iuser>;
+} & Model<IAdmin>;
