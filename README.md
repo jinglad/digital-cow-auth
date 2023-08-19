@@ -4,7 +4,7 @@ Welcome to Digital Cow Hut! This README provides an overview of the application'
 
 ## Live Link
 
-Visit the live application at [digital-cow-three.vercel.app](digital-cow-three.vercel.app).
+Visit the live application at [digital-cow-auth-xi.vercel.app](digital-cow-auth-xi.vercel.app).
 
 ## Application Routes
 
