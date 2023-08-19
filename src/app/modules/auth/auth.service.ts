@@ -8,6 +8,7 @@ import { User } from '../users/user.model';
 
 const login = async (payload: ILogin) => {
   const { phoneNumber, password } = payload;
+  console.log('payload', payload);
   const isUserExist = await User.isUserExist(phoneNumber);
 
   if (!isUserExist) {

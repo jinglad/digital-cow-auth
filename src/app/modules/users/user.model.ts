@@ -8,7 +8,7 @@ const UserSchema = new Schema<Iuser, UserModel>(
     password: {
       type: String,
       required: true,
-      select: false,
+      select: 0,
     },
     role: {
       type: String,
@@ -45,12 +45,12 @@ const UserSchema = new Schema<Iuser, UserModel>(
 );
 
 UserSchema.statics.isUserExist = async function (
-  id: string,
+  phoneNumber: string,
 ): Promise<Iuser | null> {
-  return await User.findOne({ id }, { _id: 1, password: 1, role: 1 });
+  return await User.findOne({ phoneNumber }, { _id: 1, password: 1, role: 1 });
 };
 
-UserSchema.statics.isPasswordMatched = async function (
+UserSchema.statics.isPasswordMatch = async function (
   givenPassword: string,
   savedPassword: string,
 ): Promise<boolean> {

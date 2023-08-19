@@ -17,11 +17,23 @@ router.get('/:id', auth(ENUM_USER_ROLE.ADMIN), UserController.getUserById);
 
 router.get('/', auth(ENUM_USER_ROLE.ADMIN), UserController.getAllUsers);
 
+router.get(
+  '/my-profile',
+  auth(ENUM_USER_ROLE.BUYER, ENUM_USER_ROLE.SELLER),
+  UserController.getProfile,
+);
+
 router.patch(
   '/:id',
   validateRequest(UserValidation.updateUserZodSchema),
   auth(ENUM_USER_ROLE.ADMIN),
   UserController.updateUserById,
+);
+
+router.patch(
+  '/my-profile',
+  auth(ENUM_USER_ROLE.BUYER, ENUM_USER_ROLE.SELLER),
+  UserController.updateProfile,
 );
 
 router.delete(

@@ -19,7 +19,8 @@ const createOrder = catchAsync(async (req: Request, res: Response) => {
 
 const getOrder = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await orderService.getOrder(id);
+  const user = req.user;
+  const result = await orderService.getOrder(id, user);
 
   sendResponse<IOrder>(res, {
     statusCode: httpStatus.OK,
@@ -30,7 +31,7 @@ const getOrder = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getOrders = catchAsync(async (req: Request, res: Response) => {
-  const result = await orderService.getOrders();
+  const result = await orderService.getOrders(req.user);
 
   sendResponse<IOrder[]>(res, {
     statusCode: httpStatus.OK,

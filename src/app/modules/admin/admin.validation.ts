@@ -25,6 +25,22 @@ const createAdminZodSchema = z.object({
   }),
 });
 
+const updateAdminZodSchema = z.object({
+  body: z.object({
+    password: z.string().optional(),
+    role: z.string().optional(),
+    name: z
+      .object({
+        firstName: z.string().optional(),
+        lastName: z.string().optional(),
+      })
+      .optional(),
+    phoneNumber: z.string().optional(),
+    address: z.string().optional(),
+  }),
+});
+
 export const AdminValidation = {
   createAdminZodSchema,
+  updateAdminZodSchema,
 };

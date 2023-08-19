@@ -64,10 +64,34 @@ const deleteUserById = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getProfile = catchAsync(async (req: Request, res: Response) => {
+  const result = await UsersService.getProfile(req.user);
+
+  sendResponse<Iuser>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User profile fetched successfully',
+    data: result,
+  });
+});
+
+const updateProfile = catchAsync(async (req: Request, res: Response) => {
+  const result = await UsersService.updateProfile(req.user, req.body);
+
+  sendResponse<Iuser>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User profile updated successfully',
+    data: result,
+  });
+});
+
 export const UserController = {
   createUser,
   getAllUsers,
   getUserById,
   updateUserById,
   deleteUserById,
+  getProfile,
+  updateProfile,
 };

@@ -10,11 +10,10 @@ Visit the live application at [digital-cow-three.vercel.app](digital-cow-three.v
 
 ### User
 
-- `POST` - `/api/v1/auth/signup`
 - `GET` - `/api/v1/users`
-- `GET` - `/api/v1/users/64d3c0e98ac8e8e3b8330bb9` (Single GET)
-- `PATCH` - `/api/v1/users/64d3c0e98ac8e8e3b8330bb9`
-- `DELETE` - `/api/v1/users/64d3c0e98ac8e8e3b8330bb9`
+- `GET` - `/api/v1/users/64e0515e72778d8949889099` (Single GET)
+- `PATCH` - `/api/v1/users/64e0515e72778d8949889099`
+- `DELETE` - `/api/v1/users/64e0515e72778d8949889099`
 
 ### Cows
 
@@ -36,3 +35,20 @@ Visit the live application at [digital-cow-three.vercel.app](digital-cow-three.v
 
 - `POST` - `/api/v1/orders`
 - `GET` - `/api/v1/orders`
+- `GET` - `/api/v1/orders/64e05cda56c4fe86b27a107a`
+
+### Admin
+
+- `POST` - `/api/v1/admins/create-admin`
+  `POST` - `/api/v1/admins/login`
+
+### Profile
+
+- `GET` - `/api/v1/users/my-profile`
+- `PATCH` - `/api/v1/users/my-profile`
+
+### Auth
+
+- `POST` - `/api/v1/auth/login`
+- `POST` - `/api/v1/auth/signup`
+- `POST` - `/api/v1/auth/refresh-token`

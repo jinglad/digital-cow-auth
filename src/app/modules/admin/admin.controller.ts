@@ -17,6 +17,30 @@ const createAdmin = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getProfile = catchAsync(async (req: Request, res: Response) => {
+  const result = await AdminService.getProfile(req.user);
+
+  sendResponse<IAdmin>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Admin profile fetched successfully',
+    data: result,
+  });
+});
+
+const updateProfile = catchAsync(async (req: Request, res: Response) => {
+  const result = await AdminService.updateProfile(req.user, req.body);
+
+  sendResponse<IAdmin>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Admin profile updated successfully',
+    data: result,
+  });
+});
+
 export const AdminController = {
   createAdmin,
+  getProfile,
+  updateProfile,
 };

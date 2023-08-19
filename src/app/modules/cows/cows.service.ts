@@ -7,6 +7,7 @@ import { paginationHelpers } from '../../helpers/paginationHelper';
 import { ICow, ICowFilterableFields } from './cow.interface';
 import { Cow } from './cow.model';
 import { cowSearchableFields } from './cows.constant';
+import { JwtPayload } from 'jsonwebtoken';
 
 const createCow = async (payload: ICow) => {
   const newCow = await Cow.create(payload);
@@ -82,8 +83,9 @@ const getAllCows = async (
   };
 };
 
-const getCowById = async (id: string) => {
-  const cow = await Cow.findById(id);
+const getCowById = async (id: string, user: JwtPayload | null) => {
+  // const cow = await Cow.findById(id);
+  const cow = await Cow.findOne({ _id: id });
   return cow;
 };
 

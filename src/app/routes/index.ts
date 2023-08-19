@@ -2,7 +2,7 @@ import express from 'express';
 import { CowRoutes } from '../modules/cows/cows.route';
 import { UserRoutes } from '../modules/users/user.route';
 import { OrderRoutes } from '../modules/orders/orders.route';
-import { AuthRoutes } from '../modules/users/auth.route';
+import { AuthRoutes } from '../modules/auth/auth.routes';
 
 const router = express.Router();
 

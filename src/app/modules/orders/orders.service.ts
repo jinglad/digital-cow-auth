@@ -7,6 +7,7 @@ import { Iuser } from '../users/user.interface';
 import { User } from '../users/user.model';
 import { IOrder } from './orders.interface';
 import { Order } from './orders.model';
+import { JwtPayload } from 'jsonwebtoken';
 
 const createOrder = async (order: IOrder) => {
   const { cow, buyer } = order;
@@ -36,7 +37,8 @@ const createOrder = async (order: IOrder) => {
     });
     if (!buyerUser) throw new ApiError(404, 'Failed to update buyer budget');
 
-    const seller = await User.findById(cowDetails.seller);
+    // const seller = await User.findById(cowDetails.seller);
+    const seller = await User.findOne({ _id: cowDetails.seller });
     if (!seller) throw new ApiError(404, 'Seller not found');
 
     const updatedSeller = {
@@ -62,13 +64,15 @@ const createOrder = async (order: IOrder) => {
   }
 };
 
-const getOrders = async () => {
-  const orders = await Order.find().populate('cow').populate('buyer');
+const getOrders = async (user: JwtPayload | null) => {
+  const orders = await Order.find({}).populate('cow').populate('buyer');
   return orders;
 };
 
-const getOrder = async (id: string) => {
-  const order = await Order.findById(id).populate('cow').populate('buyer');
+const getOrder = async (id: string, user: JwtPayload | null) => {
+  const order = await Order.findOne({ _id: id, buyer: user?.userId })
+    .populate('cow')
+    .populate('buyer');
   if (!order) throw new ApiError(404, 'Order not found');
   return order;
 };

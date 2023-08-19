@@ -22,7 +22,7 @@ const createCow = catchAsync(async (req: Request, res: Response) => {
 
 const getCowById = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await CowsService.getCowById(id);
+  const result = await CowsService.getCowById(id, req.user);
 
   sendResponse<ICow>(res, {
     statusCode: httpStatus.OK,
