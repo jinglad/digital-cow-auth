@@ -40,7 +40,9 @@ Visit the live application at [digital-cow-auth-xi.vercel.app](digital-cow-auth-
 ### Admin
 
 - `POST` - `/api/v1/admins/create-admin`
-  `POST` - `/api/v1/admins/login`
+- `POST` - `/api/v1/admins/login`
+- `GET` - `/api/v1/admins/my-profile`
+- `PATCH` - `/api/v1/admins/my-profile`
 
 ### Profile
 
